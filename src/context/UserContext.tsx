@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 export interface Badge {
   id: string;
@@ -41,11 +41,32 @@ const initialBadges: Badge[] = [
 ];
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<UserState>({
-    xp: 0,
-    level: 1,
-    badges: initialBadges,
-    cashback: 0,
+  const [user, setUser] = useState<UserState>(() => {
+    const stored = localStorage.getItem('finplay_user');
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        // Ensure badges array is always present and merged with initialBadges for new badges
+        const badgeMap = Object.fromEntries(initialBadges.map(b => [b.id, b]));
+        if (parsed.badges) {
+          parsed.badges.forEach((b: Badge) => {
+            badgeMap[b.id] = { ...badgeMap[b.id], ...b };
+          });
+        }
+        return {
+          ...parsed,
+          badges: Object.values(badgeMap),
+        };
+      } catch {
+        // fallback to default
+      }
+    }
+    return {
+      xp: 0,
+      level: 1,
+      badges: initialBadges,
+      cashback: 0,
+    };
   });
   
   const [showReward, setShowReward] = useState(false);
@@ -78,6 +99,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setShowReward(false);
     setTimeout(() => setCurrentReward(null), 300);
   };
+
+  // Persist user state to localStorage on change
+  useEffect(() => {
+    localStorage.setItem('finplay_user', JSON.stringify(user));
+  }, [user]);
 
   return (
     <UserContext.Provider value={{

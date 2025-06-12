@@ -7,6 +7,7 @@ import TipCoach from './TipCoach';
 import DidYouKnow from './DidYouKnow';
 import BadgeGallery from './BadgeGallery';
 import CompletionCelebration from './CompletionCelebration';
+import FinanceReportCard from './FinanceReportCard';
 import { useUser } from '../context/UserContext';
 
 type Game = 'piggybank' | 'barter' | 'scam' | null;
@@ -17,6 +18,7 @@ function KidsZone() {
   const [showDidYouKnow, setShowDidYouKnow] = useState(false);
   const [showBadgeGallery, setShowBadgeGallery] = useState(false);
   const [showCompletion, setShowCompletion] = useState(false);
+  const [showReportCard, setShowReportCard] = useState(false);
   const { user } = useUser();
 
   const handleGameStart = (game: Game) => {
@@ -108,6 +110,15 @@ function KidsZone() {
               </button>
             </div>
           </div>
+          {/* Report Card Button (demo/testing) */}
+          {user.badges.filter(b => b.earned).length >= 3 && (
+            <button
+              onClick={() => setShowReportCard(true)}
+              className="mb-4 bg-blue-100 hover:bg-blue-200 text-blue-900 px-4 py-2 rounded-xl font-semibold text-sm shadow border border-blue-200 transition-all duration-200"
+            >
+              View My Finance Report Card
+            </button>
+          )}
           <p className="text-gray-600 text-lg">Learn about money through fun games!</p>
           
           {/* Fun Progress */}
@@ -220,6 +231,10 @@ function KidsZone() {
         show={showCompletion} 
         onClose={() => setShowCompletion(false)} 
       />
+      
+      {showReportCard && (
+        <FinanceReportCard onClose={() => setShowReportCard(false)} />
+      )}
     </>
   );
 }

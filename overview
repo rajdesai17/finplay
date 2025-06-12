@@ -1,0 +1,109 @@
+Here’s a **ready-to-send detailed QA + Enhancement checklist doc** you can share with **Cursor AI** to ensure your **FinPlay prototype** is fully functional, smooth, and enhanced for a hackathon presentation or public demo. The doc is structured to help Cursor check every part of the app — functionality, UX, interactivity, responsiveness — and also **expand** the experience where relevant without breaking anything.
+
+---
+
+## ✅ FinPlay QA & Enhancement Guide
+
+**For Cursor AI – Final Testing, Polish & Expansion**
+**Project Type:** Gamified Financial Literacy Web App (Prototype)
+**Theme:** Light, Clean, Fun, Kid + Youth Friendly
+
+---
+
+### 🛠️ CORE FUNCTIONALITY CHECKLIST
+
+Ensure all core flows are working smoothly across all modules:
+
+#### 1. 🧑‍🎓 Youth Mode
+
+* [ ] Simulations work: budgeting, UPI fraud, tax filing, side hustle, EMI, savings
+* [ ] Every simulation starts, processes choices, shows result or score
+* [ ] Navigation between modules is smooth
+* [ ] UPI fraud and Credit Score games trigger interactive choices
+* [ ] No simulation causes crash, loop, or dead end
+
+#### 2. 🧒 Kids Mode
+
+* [ ] Games like Piggy Bank, Barter Game, Spot the Scam are working
+* [ ] Visuals are kid-friendly, colorful, fun
+* [ ] Instructions are clear and readable
+* [ ] Sounds and animations (if any) are playful, not noisy
+* [ ] Easy switch back to youth mode
+
+#### 3. 🏆 Rewards & Progress (Prototype-only)
+
+* [ ] Simulated reward animations for badges, unlockables, cashback
+* [ ] Placeholder for wallet integration (UPI rewards etc.)
+* [ ] Leaderboard or progress indicators (fake/mock OK)
+
+#### 4. 📱 Device Compatibility
+
+* [ ] Fully responsive on:
+
+  * Mobile (esp. ₹6K Androids, 360px width)
+  * Tablet view
+  * Desktop browsers
+* [ ] Offline-lite mode tested (cache/indexedDB or static fallback)
+
+---
+
+### 🎨 UI/UX POLISH (Light Theme Based)
+
+* [ ] Clean grid or light-patterned background
+* [ ] Typography is playful yet readable
+* [ ] Spacing and margins are consistent
+* [ ] Buttons use subtle shadow + hover effects
+* [ ] CTAs pop clearly but don’t distract
+* [ ] Pages have subtle entrance animations (fade, slide-in)
+
+---
+
+### 📈 EXPANSION REQUESTS
+
+Please expand the app **without breaking core prototype**. Assume mock/static data where needed.
+
+#### 1. 🧠 Add a **Career Quiz**
+
+* 3–5 fun questions to map a user to suggested career paths
+* Show result + recommended financial simulations (e.g. freelancer → invoice, tax game)
+
+#### 2. 🎓 Add a **Mini Finance Glossary**
+
+* Add a new section: “Learn the Lingo”
+* Include 15–20 terms (e.g. FD, SIP, EMI, Credit Score, Tax Slab)
+* Each term opens a card with a short, simple explanation
+
+#### 3. 📜 Add “My Finance Report Card” mock
+
+* After completing 3+ games, show a fake report card:
+
+  * Name: “You”
+  * Level: Budget Rookie, Fraud Buster, Tax Champ etc.
+  * Progress bar + tips
+
+#### 4. 🔊 Add Basic Sound FX (optional)
+
+* Coin jingle, error buzz, success chime — use sparingly
+
+---
+
+### 🧪 FINAL QA TASKS
+
+* [ ] Run end-to-end test on:
+
+  * Budgeting game
+  * UPI fraud story
+  * One kids module
+  * Reward animation
+* [ ] Check loading speed on slow 3G
+* [ ] No errors in console
+* [ ] No broken links/images/fonts
+* [ ] All interactions tested at 90%+ keyboard and touch
+
+---
+
+### 💡 Bonus Enhancements (If Time Permits)
+
+* [ ] Add mascot/guide character (cartoon owl or rupee coin face)
+* [ ] Add region/language toggle (just Hindi + English as mock)
+* [ ] Add one pop-up financial fact/tip after each simulation

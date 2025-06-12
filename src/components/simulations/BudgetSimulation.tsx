@@ -84,40 +84,40 @@ function BudgetSimulation({ onBack }: BudgetSimulationProps) {
     const advice = getAdvice();
     
     return (
-      <div className="min-h-screen bg-gray-50 pb-20">
-        {/* Header */}
-        <div className="bg-white border-b border-gray-200 p-6">
-          <div className="flex items-center gap-4 mb-4">
+      <div className="min-h-screen bg-gray-50 flex flex-col">
+        {/* Sticky Header */}
+        <div className="bg-white border-b border-gray-200 p-4 sticky top-0 z-10">
+          <div className="flex items-center gap-4">
             <button onClick={onBack} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
               <ArrowLeft className="w-5 h-5" />
             </button>
-            <h1 className="text-3xl font-bold text-gray-900">Budget Results</h1>
+            <h1 className="text-xl font-bold text-gray-900">Budget Results</h1>
           </div>
         </div>
 
-        <div className="p-6 space-y-6">
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto max-h-[80vh] p-3 space-y-4">
           {/* Result Card */}
-          <div className={`${advice.color} text-white rounded-3xl p-8 text-center shadow-lg`}>
-            <div className="text-6xl mb-4">{advice.emoji}</div>
-            <h2 className="text-2xl font-bold mb-3">{advice.title}</h2>
-            <p className="text-white/90 text-lg">{advice.message}</p>
+          <div className={`${advice.color} text-white rounded-2xl p-4 text-center shadow-lg`}> 
+            <div className="text-4xl mb-2">{advice.emoji}</div>
+            <h2 className="text-lg font-bold mb-1">{advice.title}</h2>
+            <p className="text-white/90 text-base">{advice.message}</p>
           </div>
 
           {/* Savings Summary */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-4 text-xl">Your Budget Summary</h3>
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="text-center bg-green-50 rounded-xl p-4 border border-green-200">
-                <div className="text-3xl font-bold text-green-600">₹{Math.max(savings, 0)}</div>
-                <div className="text-gray-600 font-medium">Monthly Savings</div>
+          <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+            <h3 className="font-bold text-gray-900 mb-2 text-base">Your Budget Summary</h3>
+            <div className="grid grid-cols-2 gap-2 mb-3">
+              <div className="text-center bg-green-50 rounded-lg p-2 border border-green-200">
+                <div className="text-xl font-bold text-green-600">₹{Math.max(savings, 0)}</div>
+                <div className="text-gray-600 text-xs">Monthly Savings</div>
               </div>
-              <div className="text-center bg-blue-50 rounded-xl p-4 border border-blue-200">
-                <div className="text-3xl font-bold text-blue-600">{savingsPercentage.toFixed(1)}%</div>
-                <div className="text-gray-600 font-medium">Savings Rate</div>
+              <div className="text-center bg-blue-50 rounded-lg p-2 border border-blue-200">
+                <div className="text-xl font-bold text-blue-600">{savingsPercentage.toFixed(1)}%</div>
+                <div className="text-gray-600 text-xs">Savings Rate</div>
               </div>
             </div>
-            
-            <div className="h-64">
+            <div className="h-40">
               <ResponsiveContainer width="100%" height="100%">
                 <Chart data={data}>
                   {data.map((entry, index) => (
@@ -130,34 +130,37 @@ function BudgetSimulation({ onBack }: BudgetSimulationProps) {
           </div>
 
           {/* Next Steps */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
-            <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2 text-xl">
+          <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+            <h3 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-base">
               <CheckCircle className="w-5 h-5 text-green-600" />
               Next Steps
             </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2">
                 <span className="text-green-600 font-bold">•</span>
                 <span className="text-gray-700">Try to save at least 20% of your income</span>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-2">
                 <span className="text-green-600 font-bold">•</span>
                 <span className="text-gray-700">Build an emergency fund of 6 months expenses</span>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-2">
                 <span className="text-green-600 font-bold">•</span>
                 <span className="text-gray-700">Consider cooking at home to reduce food costs</span>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-2">
                 <span className="text-green-600 font-bold">•</span>
                 <span className="text-gray-700">Look for free entertainment options in your city</span>
               </li>
             </ul>
           </div>
+        </div>
 
+        {/* Sticky Bottom Button */}
+        <div className="bg-white border-t border-gray-200 p-3 sticky bottom-0 z-10">
           <button
             onClick={onBack}
-            className="w-full bg-gray-900 hover:bg-gray-800 text-white py-4 px-6 rounded-2xl font-bold text-lg transition-all duration-200 hover:shadow-lg"
+            className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 px-4 rounded-xl font-bold text-base transition-all duration-200 hover:shadow-lg"
           >
             Try Another Simulation
           </button>
@@ -167,35 +170,35 @@ function BudgetSimulation({ onBack }: BudgetSimulationProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 p-6">
-        <div className="flex items-center gap-4 mb-4">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Sticky Header */}
+      <div className="bg-white border-b border-gray-200 p-4 sticky top-0 z-10">
+        <div className="flex items-center gap-4">
           <button onClick={onBack} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <h1 className="text-3xl font-bold text-gray-900">Budget ₹15K Salary</h1>
+          <h1 className="text-xl font-bold text-gray-900">Budget ₹15K Salary</h1>
         </div>
-        <p className="text-gray-600 text-lg">Allocate your first salary wisely</p>
+        <p className="text-gray-600 text-sm">Allocate your first salary wisely</p>
       </div>
 
-      <div className="p-6 space-y-6">
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto max-h-[80vh] p-3 space-y-4">
         {/* Salary Display */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 text-center">
-          <h2 className="text-xl font-bold text-gray-900 mb-3">Monthly Salary</h2>
-          <div className="text-4xl font-bold text-green-600">₹{salary.toLocaleString()}</div>
+        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200 text-center">
+          <h2 className="text-base font-bold text-gray-900 mb-1">Monthly Salary</h2>
+          <div className="text-2xl font-bold text-green-600">₹{salary.toLocaleString()}</div>
         </div>
 
         {/* Budget Sliders */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
-          <h3 className="font-bold text-gray-900 mb-6 text-xl">Allocate Your Money</h3>
-          
-          <div className="space-y-8">
+        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+          <h3 className="font-bold text-gray-900 mb-3 text-base">Allocate Your Money</h3>
+          <div className="space-y-4">
             {/* Rent */}
             <div>
-              <div className="flex justify-between mb-4">
-                <label className="font-bold text-gray-700 text-lg">🏠 Rent</label>
-                <span className="font-bold text-red-600 text-lg">₹{rent}</span>
+              <div className="flex justify-between mb-2">
+                <label className="font-bold text-gray-700 text-sm">🏠 Rent</label>
+                <span className="font-bold text-red-600 text-sm">₹{rent}</span>
               </div>
               <div className="relative">
                 <input
@@ -219,9 +222,9 @@ function BudgetSimulation({ onBack }: BudgetSimulationProps) {
 
             {/* Food */}
             <div>
-              <div className="flex justify-between mb-4">
-                <label className="font-bold text-gray-700 text-lg">🍽️ Food</label>
-                <span className="font-bold text-orange-600 text-lg">₹{food}</span>
+              <div className="flex justify-between mb-2">
+                <label className="font-bold text-gray-700 text-sm">🍽️ Food</label>
+                <span className="font-bold text-orange-600 text-sm">₹{food}</span>
               </div>
               <div className="relative">
                 <input
@@ -245,9 +248,9 @@ function BudgetSimulation({ onBack }: BudgetSimulationProps) {
 
             {/* Transport */}
             <div>
-              <div className="flex justify-between mb-4">
-                <label className="font-bold text-gray-700 text-lg">🚌 Transport</label>
-                <span className="font-bold text-yellow-600 text-lg">₹{transport}</span>
+              <div className="flex justify-between mb-2">
+                <label className="font-bold text-gray-700 text-sm">🚌 Transport</label>
+                <span className="font-bold text-yellow-600 text-sm">₹{transport}</span>
               </div>
               <div className="relative">
                 <input
@@ -271,9 +274,9 @@ function BudgetSimulation({ onBack }: BudgetSimulationProps) {
 
             {/* Entertainment */}
             <div>
-              <div className="flex justify-between mb-4">
-                <label className="font-bold text-gray-700 text-lg">🎬 Entertainment</label>
-                <span className="font-bold text-purple-600 text-lg">₹{entertainment}</span>
+              <div className="flex justify-between mb-2">
+                <label className="font-bold text-gray-700 text-sm">🎬 Entertainment</label>
+                <span className="font-bold text-purple-600 text-sm">₹{entertainment}</span>
               </div>
               <div className="relative">
                 <input

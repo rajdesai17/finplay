@@ -5,9 +5,10 @@ import KidsZone from './components/KidsZone';
 import CareerQuiz from './components/CareerQuiz';
 import BottomNav from './components/BottomNav';
 import RewardPopup from './components/RewardPopup';
+import FinanceGlossary from './components/FinanceGlossary';
 import { UserProvider } from './context/UserContext';
 
-export type Screen = 'landing' | 'youth' | 'kids' | 'quiz';
+export type Screen = 'landing' | 'youth' | 'kids' | 'quiz' | 'glossary';
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('landing');
@@ -22,6 +23,8 @@ function App() {
         return <KidsZone />;
       case 'quiz':
         return <CareerQuiz />;
+      case 'glossary':
+        return <FinanceGlossary />;
       default:
         return <LandingPage onNavigate={setCurrentScreen} />;
     }

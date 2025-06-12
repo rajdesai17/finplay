@@ -115,6 +115,17 @@ function LandingPage({ onNavigate }: LandingPageProps) {
             </div>
             <p className="text-sm text-gray-600 mt-1 font-normal">Age 8-14 • Fun Learning Games</p>
           </button>
+
+          <button
+            onClick={() => onNavigate('glossary')}
+            className="w-full bg-blue-100 hover:bg-blue-200 text-blue-900 py-4 px-8 rounded-2xl font-semibold text-lg shadow-md border-2 border-blue-200 hover:border-blue-300 transform transition-all duration-200 hover:scale-105 active:scale-95 mt-2"
+          >
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-2xl">📚</span>
+              <span>Learn the Lingo</span>
+            </div>
+            <p className="text-sm text-blue-700 mt-1 font-normal">Finance Glossary for All Ages</p>
+          </button>
         </div>
 
         {/* Stats */}

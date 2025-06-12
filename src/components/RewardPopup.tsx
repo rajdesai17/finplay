@@ -18,7 +18,7 @@ function RewardPopup() {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl transform animate-bounce">
+      <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl transform animate-slide-up">
         <button
           onClick={dismissReward}
           className="absolute top-6 right-6 text-gray-400 hover:text-gray-600"

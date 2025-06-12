@@ -71,6 +71,17 @@ function LandingPage({ onNavigate }: LandingPageProps) {
 
       {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center">
+        {/* Back Button (if not on landing) */}
+        <button
+          onClick={() => onNavigate('landing')}
+          className="absolute top-4 left-4 bg-white/80 hover:bg-blue-50 rounded-full p-2 shadow transition-colors z-20"
+          aria-label="Back to Home"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-blue-600">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+
         {/* Logo and Title */}
         <div className="mb-12">
           <div className="mb-8 flex items-center justify-center">
@@ -126,22 +137,6 @@ function LandingPage({ onNavigate }: LandingPageProps) {
             </div>
             <p className="text-sm text-blue-700 mt-1 font-normal">Finance Glossary for All Ages</p>
           </button>
-        </div>
-
-        {/* Stats */}
-        <div className="mt-16 flex gap-8 text-gray-600">
-          <div className="text-center">
-            <div className="font-bold text-2xl text-gray-900">10K+</div>
-            <div className="text-sm">Young Learners</div>
-          </div>
-          <div className="text-center">
-            <div className="font-bold text-2xl text-gray-900">50+</div>
-            <div className="text-sm">Fun Challenges</div>
-          </div>
-          <div className="text-center">
-            <div className="font-bold text-2xl text-gray-900">₹1L+</div>
-            <div className="text-sm">Money Learned</div>
-          </div>
         </div>
       </div>
 

@@ -32,6 +32,7 @@ function TaxReturnGame({ onBack }: TaxReturnGameProps) {
   });
   const [showResult, setShowResult] = useState(false);
   const { addReward } = useUser();
+  const [showInstructions, setShowInstructions] = useState(false);
 
   const calculateCorrectTax = () => {
     const { salary, rentPaid, lifeInsurance, ppfContribution, educationLoan, mediclaim } = taxData;
@@ -131,6 +132,9 @@ function TaxReturnGame({ onBack }: TaxReturnGameProps) {
               <ArrowLeft className="w-5 h-5" />
             </button>
             <h1 className="text-2xl font-bold">Tax Return Results</h1>
+            <button onClick={() => setShowInstructions(true)} className="ml-auto px-3 py-2 bg-white/20 hover:bg-white/40 rounded-xl font-bold text-orange-900 text-sm shadow border border-orange-300" title="How to Play?">
+              How to Play?
+            </button>
           </div>
         </div>
 
@@ -279,6 +283,23 @@ function TaxReturnGame({ onBack }: TaxReturnGameProps) {
             </button>
           </div>
         </div>
+
+        {showInstructions && (
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+            <div className="bg-white rounded-2xl p-8 max-w-xs w-full text-center shadow-xl border-4 border-orange-200 relative">
+              <button onClick={() => setShowInstructions(false)} className="absolute top-2 right-2 text-xl">✖️</button>
+              <div className="text-4xl mb-2">🤔</div>
+              <h2 className="font-bold text-lg mb-2">How to Play</h2>
+              <ul className="text-left text-sm mb-4 list-disc pl-5 text-gray-700">
+                <li>Your goal: Calculate your taxable income, tax owed, and refund.</li>
+                <li>Enter your details and deductions step by step.</li>
+                <li>Try to get as close as possible to the correct answer for a high score.</li>
+                <li>Submit to see your accuracy and earn a badge!</li>
+              </ul>
+              <button onClick={() => setShowInstructions(false)} className="bg-orange-500 text-white px-4 py-2 rounded-xl font-bold mt-2">Got it!</button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

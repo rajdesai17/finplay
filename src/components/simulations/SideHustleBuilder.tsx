@@ -114,6 +114,7 @@ function SideHustleBuilder({ onBack }: SideHustleBuilderProps) {
   const [showResult, setShowResult] = useState(false);
   const [totalProfit, setTotalProfit] = useState(0);
   const { addReward } = useUser();
+  const [showInstructions, setShowInstructions] = useState(false);
 
   const startBusiness = (business: Business) => {
     if (bankBalance >= business.initialCost) {
@@ -449,6 +450,33 @@ function SideHustleBuilder({ onBack }: SideHustleBuilderProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 pb-20">
+      <div className="bg-gradient-to-r from-indigo-500 to-green-600 text-white p-6 pb-8">
+        <div className="flex items-center gap-4 mb-4">
+          <button onClick={onBack} className="p-2 hover:bg-white/20 rounded-full">
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <h1 className="text-2xl font-bold">Side Hustle Builder</h1>
+          <button onClick={() => setShowInstructions(true)} className="ml-auto px-3 py-2 bg-white/20 hover:bg-white/40 rounded-xl font-bold text-indigo-900 text-sm shadow border border-indigo-300" title="How to Play?">
+            How to Play?
+          </button>
+        </div>
+      </div>
+      {showInstructions && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-xs w-full text-center shadow-xl border-4 border-indigo-200 relative">
+            <button onClick={() => setShowInstructions(false)} className="absolute top-2 right-2 text-xl">✖️</button>
+            <div className="text-4xl mb-2">🤔</div>
+            <h2 className="font-bold text-lg mb-2">How to Play</h2>
+            <ul className="text-left text-sm mb-4 list-disc pl-5 text-gray-700">
+              <li>Your goal: Start and grow a business for 12 months.</li>
+              <li>Pick a business, manage revenue and expenses, and handle random events.</li>
+              <li>Try to maximize your profit and bank balance by the end.</li>
+              <li>Finish with a high ROI to earn a badge!</li>
+            </ul>
+            <button onClick={() => setShowInstructions(false)} className="bg-indigo-500 text-white px-4 py-2 rounded-xl font-bold mt-2">Got it!</button>
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 pb-8">
         <div className="flex items-center gap-4 mb-4">

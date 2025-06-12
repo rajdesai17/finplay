@@ -12,6 +12,7 @@ function PiggyBankBuilder({ onBack }: PiggyBankBuilderProps) {
   const [showSuccess, setShowSuccess] = useState(false);
   const [coinAnimation, setCoinAnimation] = useState(false);
   const { addReward } = useUser();
+  const [showInstructions, setShowInstructions] = useState(false);
 
   const addCoin = (value: number) => {
     if (currentCoins + value <= goal) {
@@ -99,6 +100,9 @@ function PiggyBankBuilder({ onBack }: PiggyBankBuilderProps) {
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h1 className="text-xl font-bold">Piggy Bank Builder</h1>
+          <button onClick={() => setShowInstructions(true)} className="ml-auto px-3 py-2 bg-white/20 hover:bg-white/40 rounded-xl font-bold text-pink-900 text-sm shadow border border-pink-300" title="How to Play?">
+            How to Play?
+          </button>
         </div>
         <p className="text-pink-100 text-sm">Save coins to buy your dream bicycle! 🚲</p>
         {/* Progress Bar */}
@@ -114,6 +118,22 @@ function PiggyBankBuilder({ onBack }: PiggyBankBuilderProps) {
           </div>
         </div>
       </div>
+      {showInstructions && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-xs w-full text-center shadow-xl border-4 border-pink-200 relative">
+            <button onClick={() => setShowInstructions(false)} className="absolute top-2 right-2 text-xl">✖️</button>
+            <div className="text-4xl mb-2">🤔</div>
+            <h2 className="font-bold text-lg mb-2">How to Play</h2>
+            <ul className="text-left text-sm mb-4 list-disc pl-5 text-gray-700">
+              <li>Your goal: Save coins to reach your dream goal (like a bicycle)!</li>
+              <li>Click the buttons to add different amounts to your piggy bank.</li>
+              <li>Watch your progress bar fill up as you save.</li>
+              <li>When you reach your goal, you win a reward!</li>
+            </ul>
+            <button onClick={() => setShowInstructions(false)} className="bg-pink-500 text-white px-4 py-2 rounded-xl font-bold mt-2">Got it!</button>
+          </div>
+        </div>
+      )}
       {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto max-h-[80vh] p-3">
         <div className="bg-white rounded-2xl p-4 shadow-xl text-center mb-4 border-2 border-pink-200">

@@ -15,6 +15,7 @@ function BudgetSimulation({ onBack }: BudgetSimulationProps) {
   const [entertainment, setEntertainment] = useState(2000);
   const [showResult, setShowResult] = useState(false);
   const { addReward } = useUser();
+  const [showInstructions, setShowInstructions] = useState(false);
 
   const savings = salary - rent - food - transport - entertainment;
   const savingsPercentage = (savings / salary) * 100;
@@ -178,10 +179,28 @@ function BudgetSimulation({ onBack }: BudgetSimulationProps) {
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h1 className="text-xl font-bold text-gray-900">Budget ₹15K Salary</h1>
+          <button onClick={() => setShowInstructions(true)} className="ml-auto px-3 py-2 bg-white/20 hover:bg-gray-100 rounded-xl font-bold text-blue-900 text-sm shadow border border-blue-300" title="How to Play?">
+            How to Play?
+          </button>
         </div>
         <p className="text-gray-600 text-sm">Allocate your first salary wisely</p>
       </div>
-
+      {showInstructions && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-xs w-full text-center shadow-xl border-4 border-blue-200 relative">
+            <button onClick={() => setShowInstructions(false)} className="absolute top-2 right-2 text-xl">✖️</button>
+            <div className="text-4xl mb-2">🤔</div>
+            <h2 className="font-bold text-lg mb-2">How to Play</h2>
+            <ul className="text-left text-sm mb-4 list-disc pl-5 text-gray-700">
+              <li>Your goal: Allocate your ₹15,000 salary across rent, food, transport, and entertainment.</li>
+              <li>Use the sliders to adjust how much you spend in each category.</li>
+              <li>Try to maximize your savings! Aim for at least 20% savings for a badge.</li>
+              <li>Submit your budget to see your results and advice.</li>
+            </ul>
+            <button onClick={() => setShowInstructions(false)} className="bg-blue-500 text-white px-4 py-2 rounded-xl font-bold mt-2">Got it!</button>
+          </div>
+        </div>
+      )}
       {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto max-h-[80vh] p-3 space-y-4">
         {/* Salary Display */}
@@ -249,7 +268,7 @@ function BudgetSimulation({ onBack }: BudgetSimulationProps) {
             {/* Transport */}
             <div>
               <div className="flex justify-between mb-2">
-                <label className="font-bold text-gray-700 text-sm">🚌 Transport</label>
+                <label className="font-bold text-gray-700 text-sm">�� Transport</label>
                 <span className="font-bold text-yellow-600 text-sm">₹{transport}</span>
               </div>
               <div className="relative">

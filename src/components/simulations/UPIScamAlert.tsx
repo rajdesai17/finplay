@@ -95,6 +95,7 @@ function UPIScamAlert({ onBack }: UPIScamAlertProps) {
   const [score, setScore] = useState(0);
   const [showFinalResult, setShowFinalResult] = useState(false);
   const { addReward } = useUser();
+  const [showInstructions, setShowInstructions] = useState(false);
 
   const transaction = transactions[currentTransaction];
 
@@ -154,6 +155,9 @@ function UPIScamAlert({ onBack }: UPIScamAlertProps) {
               <ArrowLeft className="w-5 h-5" />
             </button>
             <h1 className="text-2xl font-bold">UPI Security Results</h1>
+            <button onClick={() => setShowInstructions(true)} className="ml-auto px-3 py-2 bg-white/20 hover:bg-white/40 rounded-xl font-bold text-red-900 text-sm shadow border border-red-300" title="How to Play?">
+              How to Play?
+            </button>
           </div>
         </div>
 
@@ -215,6 +219,23 @@ function UPIScamAlert({ onBack }: UPIScamAlertProps) {
             </div>
           </div>
         </div>
+
+        {showInstructions && (
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+            <div className="bg-white rounded-2xl p-8 max-w-xs w-full text-center shadow-xl border-4 border-red-200 relative">
+              <button onClick={() => setShowInstructions(false)} className="absolute top-2 right-2 text-xl">✖️</button>
+              <div className="text-4xl mb-2">🤔</div>
+              <h2 className="font-bold text-lg mb-2">How to Play</h2>
+              <ul className="text-left text-sm mb-4 list-disc pl-5 text-gray-700">
+                <li>Your goal: Spot scams in UPI transactions and keep your money safe.</li>
+                <li>Read each transaction and decide if it's safe or a scam.</li>
+                <li>Learn from the feedback after each choice.</li>
+                <li>Try to get the highest score for a badge!</li>
+              </ul>
+              <button onClick={() => setShowInstructions(false)} className="bg-red-500 text-white px-4 py-2 rounded-xl font-bold mt-2">Got it!</button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -228,6 +249,9 @@ function UPIScamAlert({ onBack }: UPIScamAlertProps) {
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h1 className="text-2xl font-bold">UPI Scam Alert</h1>
+          <button onClick={() => setShowInstructions(true)} className="ml-auto px-3 py-2 bg-white/20 hover:bg-white/40 rounded-xl font-bold text-red-900 text-sm shadow border border-red-300" title="How to Play?">
+            How to Play?
+          </button>
         </div>
         <p className="text-red-100">Spot fraudulent UPI transactions</p>
         

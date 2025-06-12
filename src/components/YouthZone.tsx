@@ -22,6 +22,7 @@ function YouthZone() {
   const [showBadgeGallery, setShowBadgeGallery] = useState(false);
   const [showCompletion, setShowCompletion] = useState(false);
   const [showReportCard, setShowReportCard] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
   const { user } = useUser();
 
   const handleSimulationStart = (simulation: Simulation) => {
@@ -147,6 +148,9 @@ function YouthZone() {
               >
                 🏆
               </button>
+              <button onClick={() => setShowInstructions(true)} className="px-3 py-2 bg-white/20 hover:bg-gray-100 rounded-xl font-bold text-blue-900 text-sm shadow border border-blue-300" title="How to Play?">
+                How to Play?
+              </button>
             </div>
           </div>
           <p className="text-gray-600 text-lg">Master real-world financial challenges</p>
@@ -257,6 +261,23 @@ function YouthZone() {
       
       {showReportCard && (
         <FinanceReportCard onClose={() => setShowReportCard(false)} />
+      )}
+
+      {showInstructions && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-xs w-full text-center shadow-xl border-4 border-blue-200 relative">
+            <button onClick={() => setShowInstructions(false)} className="absolute top-2 right-2 text-xl">✖️</button>
+            <div className="text-4xl mb-2">🤔</div>
+            <h2 className="font-bold text-lg mb-2">How to Play</h2>
+            <ul className="text-left text-sm mb-4 list-disc pl-5 text-gray-700">
+              <li>Welcome to Youth Zone! Here you can try real-life money challenges.</li>
+              <li>Click a card to start a simulation (like budgeting, taxes, or spotting scams).</li>
+              <li>Each simulation teaches you a new skill—complete them to earn XP, cashback, and badges.</li>
+              <li>Check your progress and unlock your Finance Report Card!</li>
+            </ul>
+            <button onClick={() => setShowInstructions(false)} className="bg-blue-500 text-white px-4 py-2 rounded-xl font-bold mt-2">Got it!</button>
+          </div>
+        </div>
       )}
     </>
   );

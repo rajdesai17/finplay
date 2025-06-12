@@ -59,6 +59,7 @@ function FreelancerLife({ onBack }: FreelancerLifeProps) {
   const [showResult, setShowResult] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const { addReward } = useUser();
+  const [showInstructions, setShowInstructions] = useState(false);
 
   const availableProjects = projects.filter(p => 
     !completedProjects.some(cp => cp.project.id === p.id) && 
@@ -149,6 +150,9 @@ function FreelancerLife({ onBack }: FreelancerLifeProps) {
               <ArrowLeft className="w-5 h-5" />
             </button>
             <h1 className="text-2xl font-bold">Freelancer Life Results</h1>
+            <button onClick={() => setShowInstructions(true)} className="ml-auto px-3 py-2 bg-white/20 hover:bg-white/40 rounded-xl font-bold text-purple-900 text-sm shadow border border-purple-300" title="How to Play?">
+              How to Play?
+            </button>
           </div>
         </div>
 
@@ -251,6 +255,22 @@ function FreelancerLife({ onBack }: FreelancerLifeProps) {
             Try Another Simulation
           </button>
         </div>
+        {showInstructions && (
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+            <div className="bg-white rounded-2xl p-8 max-w-xs w-full text-center shadow-xl border-4 border-purple-200 relative">
+              <button onClick={() => setShowInstructions(false)} className="absolute top-2 right-2 text-xl">✖️</button>
+              <div className="text-4xl mb-2">🤔</div>
+              <h2 className="font-bold text-lg mb-2">How to Play</h2>
+              <ul className="text-left text-sm mb-4 list-disc pl-5 text-gray-700">
+                <li>Your goal: Complete projects, manage your cash flow, and avoid running out of money.</li>
+                <li>Pick projects, finish them, and wait for payments (some are delayed!).</li>
+                <li>Each month, pay your expenses and see if you get paid for finished work.</li>
+                <li>Try to finish with a healthy bank balance for a badge!</li>
+              </ul>
+              <button onClick={() => setShowInstructions(false)} className="bg-purple-500 text-white px-4 py-2 rounded-xl font-bold mt-2">Got it!</button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -264,6 +284,9 @@ function FreelancerLife({ onBack }: FreelancerLifeProps) {
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h1 className="text-2xl font-bold">Freelancer Life</h1>
+          <button onClick={() => setShowInstructions(true)} className="ml-auto px-3 py-2 bg-white/20 hover:bg-white/40 rounded-xl font-bold text-purple-900 text-sm shadow border border-purple-300" title="How to Play?">
+            How to Play?
+          </button>
         </div>
         <p className="text-purple-100">Manage cash flow and delayed payments</p>
         
@@ -442,6 +465,22 @@ function FreelancerLife({ onBack }: FreelancerLifeProps) {
           </ul>
         </div>
       </div>
+      {showInstructions && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-xs w-full text-center shadow-xl border-4 border-purple-200 relative">
+            <button onClick={() => setShowInstructions(false)} className="absolute top-2 right-2 text-xl">✖️</button>
+            <div className="text-4xl mb-2">🤔</div>
+            <h2 className="font-bold text-lg mb-2">How to Play</h2>
+            <ul className="text-left text-sm mb-4 list-disc pl-5 text-gray-700">
+              <li>Your goal: Complete projects, manage your cash flow, and avoid running out of money.</li>
+              <li>Pick projects, finish them, and wait for payments (some are delayed!).</li>
+              <li>Each month, pay your expenses and see if you get paid for finished work.</li>
+              <li>Try to finish with a healthy bank balance for a badge!</li>
+            </ul>
+            <button onClick={() => setShowInstructions(false)} className="bg-purple-500 text-white px-4 py-2 rounded-xl font-bold mt-2">Got it!</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

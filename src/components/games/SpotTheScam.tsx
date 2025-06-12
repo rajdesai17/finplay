@@ -98,6 +98,7 @@ function SpotTheScam({ onBack }: SpotTheScamProps) {
   const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showFinalResult, setShowFinalResult] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
   const { addReward } = useUser();
 
   const scenario = scenarios[currentScenario];
@@ -158,6 +159,9 @@ function SpotTheScam({ onBack }: SpotTheScamProps) {
               <ArrowLeft className="w-5 h-5" />
             </button>
             <h1 className="text-2xl font-bold">Scam Detection Results</h1>
+            <button onClick={() => setShowInstructions(true)} className="ml-auto p-2 hover:bg-white/20 rounded-full" title="How to Play?">
+              <span role="img" aria-label="info">ℹ️</span>
+            </button>
           </div>
         </div>
 
@@ -214,6 +218,23 @@ function SpotTheScam({ onBack }: SpotTheScamProps) {
             </div>
           </div>
         </div>
+
+        {showInstructions && (
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+            <div className="bg-white rounded-2xl p-8 max-w-xs w-full text-center shadow-xl border-4 border-green-200 relative">
+              <button onClick={() => setShowInstructions(false)} className="absolute top-2 right-2 text-xl">✖️</button>
+              <div className="text-4xl mb-2">🤔</div>
+              <h2 className="font-bold text-lg mb-2">How to Play</h2>
+              <ul className="text-left text-sm mb-4 list-disc pl-5 text-gray-700">
+                <li>Your goal: Spot the scam in each story scenario!</li>
+                <li>Read the story and choose the option you think is safest.</li>
+                <li>Learn why each choice is right or wrong after you pick.</li>
+                <li>Try to get the highest score and earn a badge!</li>
+              </ul>
+              <button onClick={() => setShowInstructions(false)} className="bg-green-500 text-white px-4 py-2 rounded-xl font-bold mt-2">Got it!</button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -227,6 +248,9 @@ function SpotTheScam({ onBack }: SpotTheScamProps) {
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h1 className="text-2xl font-bold">Spot the Scam</h1>
+          <button onClick={() => setShowInstructions(true)} className="ml-auto px-3 py-2 bg-white/20 hover:bg-white/40 rounded-xl font-bold text-green-900 text-sm shadow border border-green-300" title="How to Play?">
+            How to Play?
+          </button>
         </div>
         <p className="text-green-100">Help the characters avoid tricky situations!</p>
         
